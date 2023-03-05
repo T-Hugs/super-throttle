@@ -41,8 +41,8 @@ Error generating stack: `+o.message+`
 const throttledEventHandler = throttle(eventHandler);
 window.addEventListener("mousemove", throttledEventHandler);`})}),y("h4",{className:"mt-3",children:"Server-side autocomplete"}),F("p",{children:["Because autocomplete results may not be relevant until the user pauses typing, we want to avoid making any requests until we see this pause. This is the perfect situation for"," ",y("code",{children:'mode: "debounce"'}),". Also, we only want to make the server call on the trailing edge of the cooldown since the autocomplete results for a single keystroke likely won't be relevant."]}),y("p",{children:y("code",{className:"whitespace-pre-wrap",children:`const getResultsThrottled = throttle(
 	getAutocompleteResults, {
-		cooldown: 250,
-		mode: "throttle",
+		cooldownMs: 250,
+		mode: "debounce",
 		executionEdge: "trailing"
 	};
 );
@@ -54,7 +54,7 @@ const handleSubmit = (event: FormEvent) => {
 };
 const onlySubmitOnce = throttle(
 	handleSubmit, 
-	{ cooldown: Number.POSITIVE_INFINITY, executionEdge: "leading" }
+	{ cooldownMs: Number.POSITIVE_INFINITY, executionEdge: "leading" }
 );
 form.addEventListener("submit", onlySubmitOnce);
 

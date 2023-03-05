@@ -310,7 +310,7 @@ window.addEventListener("mousemove", throttledEventHandler);`}
 								<code className="whitespace-pre-wrap">
 									{`const getResultsThrottled = throttle(
 	getAutocompleteResults, {
-		cooldown: 250,
+		cooldownMs: 250,
 		mode: "debounce",
 		executionEdge: "trailing"
 	};
@@ -336,7 +336,7 @@ const handleSubmit = (event: FormEvent) => {
 };
 const onlySubmitOnce = throttle(
 	handleSubmit, 
-	{ cooldown: Number.POSITIVE_INFINITY, executionEdge: "leading" }
+	{ cooldownMs: Number.POSITIVE_INFINITY, executionEdge: "leading" }
 );
 form.addEventListener("submit", onlySubmitOnce);
 
