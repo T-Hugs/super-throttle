@@ -311,7 +311,7 @@ window.addEventListener("mousemove", throttledEventHandler);`}
 									{`const getResultsThrottled = throttle(
 	getAutocompleteResults, {
 		cooldown: 250,
-		mode: "throttle",
+		mode: "debounce",
 		executionEdge: "trailing"
 	};
 );
